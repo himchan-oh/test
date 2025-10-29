@@ -77,19 +77,32 @@ venv\Scripts\activate  # Windows
 
 2. **크롤러 실행**:
 
-두 가지 버전의 크롤러가 제공됩니다:
+세 가지 버전의 크롤러가 제공됩니다:
 
-#### 옵션 1: 간단한 크롤러 (권장 - 빠른 시작)
+#### 옵션 1: 강화된 크롤러 (권장 - 상세 정보 수집)
 
-Playwright 설치 없이 바로 실행 가능:
+각 채용 공고의 상세 페이지에 접속하여 모든 정보를 수집합니다:
+
+```bash
+python crawler_enhanced.py
+```
+
+**수집 정보:**
+- 기본 정보: ID, 공고명, 회사명, 직군, 직무
+- 상세 정보: 주요업무, 자격요건, 우대사항, 혜택
+- 추가 정보: 기술스택, 보상금, 마감일, 근무지, 고용형태, 경력, 연봉
+
+#### 옵션 2: 간단한 크롤러 (빠른 테스트용)
+
+메인 페이지의 기본 정보만 수집:
 
 ```bash
 python crawler_simple.py
 ```
 
-#### 옵션 2: Playwright 기반 크롤러
+#### 옵션 3: Playwright 기반 크롤러
 
-JavaScript 렌더링이 필요한 최신 웹사이트에 적합:
+JavaScript 렌더링이 필요한 경우 (Python 3.13 이하):
 
 ```bash
 python crawler.py
@@ -101,14 +114,47 @@ python crawler.py
 deactivate
 ```
 
-실행하면 다음 파일들이 생성됩니다:
-- `job_postings.json` - JSON 형식의 채용 정보
-- `job_postings.csv` - CSV 형식의 채용 정보
+### 출력 파일
+
+**강화된 크롤러 (crawler_enhanced.py):**
+- `job_postings_detailed.json` - JSON 형식의 상세 채용 정보
+- `job_postings_detailed.csv` - CSV 형식의 상세 채용 정보
+- `page_source_main.html` - 메인 페이지 소스 (디버깅용)
+- `page_source_detail.html` - 상세 페이지 소스 (디버깅용)
+
+**간단한 크롤러 (crawler_simple.py):**
+- `job_postings.json` - JSON 형식의 기본 채용 정보
+- `job_postings.csv` - CSV 형식의 기본 채용 정보
 - `page_source.html` - 페이지 소스 (디버깅용)
 
 ### 출력 데이터 형식
 
-각 채용 공고는 다음 정보를 포함합니다:
+**강화된 크롤러 (crawler_enhanced.py):**
+
+```json
+{
+  "job_id": "공고 ID",
+  "url": "공고 URL",
+  "title": "공고 제목",
+  "company": "회사명",
+  "job_category": "직군",
+  "job_position": "직무",
+  "main_tasks": "주요 업무",
+  "qualifications": "자격 요건",
+  "preferred_qualifications": "우대 사항",
+  "benefits": "혜택 및 복지",
+  "tech_stack": ["기술1", "기술2", "..."],
+  "reward": "보상금",
+  "deadline": "마감일",
+  "location": "근무 지역",
+  "employment_type": "고용 형태",
+  "experience_level": "경력 요건",
+  "salary": "연봉",
+  "crawled_at": "크롤링 시간"
+}
+```
+
+**간단한 크롤러 (crawler_simple.py):**
 
 ```json
 {

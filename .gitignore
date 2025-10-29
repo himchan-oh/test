@@ -24,9 +24,9 @@ wheels/
 *.egg
 
 # 크롤링 결과 파일
-job_postings.json
-job_postings.csv
-page_source.html
+job_postings*.json
+job_postings*.csv
+page_source*.html
 
 # IDE
 .vscode/
