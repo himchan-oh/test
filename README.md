@@ -11,36 +11,83 @@ Remember App의 채용 공고 페이지에서 정보를 자동으로 수집하�
 
 ## 설치 방법
 
-### 1. 필요한 패키지 설치
+### 빠른 설치 (macOS/Linux)
+
+자동 설치 스크립트 사용:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+### 수동 설치
+
+#### 1. 가상 환경 생성 및 활성화
+
+**macOS/Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+**Windows:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+#### 2. 패키지 설치
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Playwright 브라우저 설치
+#### 3. Playwright 브라우저 설치 (선택사항)
+
+`crawler.py` (Playwright 버전)을 사용하려는 경우:
 
 ```bash
 playwright install chromium
 ```
 
+간단한 버전(`crawler_simple.py`)만 사용한다면 이 단계는 생략 가능합니다.
+
 ## 사용 방법
+
+### 기본 사용법
+
+1. **가상 환경 활성화** (매번 실행 전 필요):
+
+```bash
+source venv/bin/activate  # macOS/Linux
+# 또는
+venv\Scripts\activate  # Windows
+```
+
+2. **크롤러 실행**:
 
 두 가지 버전의 크롤러가 제공됩니다:
 
-### 1. Playwright 기반 크롤러 (권장)
+#### 옵션 1: 간단한 크롤러 (권장 - 빠른 시작)
 
-JavaScript 렌더링이 필요한 최신 웹사이트에 적합합니다.
+Playwright 설치 없이 바로 실행 가능:
+
+```bash
+python crawler_simple.py
+```
+
+#### 옵션 2: Playwright 기반 크롤러
+
+JavaScript 렌더링이 필요한 최신 웹사이트에 적합:
 
 ```bash
 python crawler.py
 ```
 
-### 2. 간단한 크롤러 (대안)
-
-Playwright 설치가 어려운 경우 또는 정적 HTML 페이지에 사용합니다.
+3. **작업 완료 후 가상 환경 종료**:
 
 ```bash
-python crawler_simple.py
+deactivate
 ```
 
 실행하면 다음 파일들이 생성됩니다:
