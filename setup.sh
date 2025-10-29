@@ -16,7 +16,11 @@ source venv/bin/activate
 # 패키지 설치
 echo "3. 필요한 패키지 설치 중..."
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements-simple.txt
+
+echo ""
+echo "참고: Python 3.14를 사용하는 경우 Playwright가 설치되지 않을 수 있습니다."
+echo "crawler_simple.py를 사용하시면 Playwright 없이 크롤링이 가능합니다."
 
 echo ""
 echo "========================================"

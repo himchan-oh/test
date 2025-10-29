@@ -38,13 +38,24 @@ venv\Scripts\activate
 
 #### 2. 패키지 설치
 
+**간단한 크롤러만 사용하는 경우 (권장):**
+
+```bash
+pip install -r requirements-simple.txt
+```
+
+**Playwright 버전도 사용하는 경우:**
+
 ```bash
 pip install -r requirements.txt
 ```
 
+> **참고**: Python 3.14 이상에서는 Playwright의 의존성(greenlet)이 아직 지원되지 않습니다.
+> 이 경우 `requirements-simple.txt`를 사용하여 `crawler_simple.py`만 실행하세요.
+
 #### 3. Playwright 브라우저 설치 (선택사항)
 
-`crawler.py` (Playwright 버전)을 사용하려는 경우:
+`crawler.py` (Playwright 버전)을 사용하려는 경우에만 필요:
 
 ```bash
 playwright install chromium
@@ -111,6 +122,22 @@ deactivate
 ```
 
 ## 문제 해결
+
+### Python 3.14에서 Playwright 설치 실패하는 경우
+
+Python 3.14는 최신 버전이라 Playwright의 의존성(greenlet)이 아직 지원되지 않습니다.
+
+**해결 방법:**
+
+```bash
+# 가상 환경 활성화 후
+pip install -r requirements-simple.txt
+
+# 크롤러 실행
+python crawler_simple.py
+```
+
+`crawler_simple.py`는 Playwright 없이도 잘 동작합니다!
 
 ### 403 Forbidden 에러가 발생하는 경우
 
